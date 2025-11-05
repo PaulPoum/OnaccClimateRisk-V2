@@ -66,8 +66,6 @@ except ImportError as e:
     def parse_group_alert_message(*args, **kwargs):
         return {}
 
-import base64
-
 warnings.filterwarnings('ignore')
 
 # Configuration de la page
@@ -164,11 +162,10 @@ class ModernDroughtPlatform:
             st.markdown("---")
             st.markdown("""
             <div class="sidebar-footer">
-                <p><strong>Sources de données:</strong></p>
-                <p>• OpenMeteo 🌤️</p>
-                <p>• Sentinel-2 🛰️</p>
-                <p>• Landsat 8-9 📡</p>
-                <p>• MODIS 🌍</p>
+                <p><strong>Sources de données :</strong></p>
+                <p>• NOAA | NASA | ONACC 🌤️</p>
+                <p>• Sentinel-2 | LASAC 🛰️</p>
+                <p>• Landsat 8-9 | MODIS📡</p>
             </div>
             """, unsafe_allow_html=True)
         
@@ -188,7 +185,9 @@ class ModernDroughtPlatform:
         selected_locality, analysis_period, satellite_layer = self.create_sidebar()
         
         if not hasattr(st.session_state, 'analyze_clicked'):
-            self.show_landing_page()
+            # Message d'accueil simplifié au lieu de la landing page complète
+            st.info("🌵 **Bienvenue sur la plateforme de surveillance des sécheresses**")
+            st.write("Configurez les paramètres dans la sidebar et cliquez sur **'Lancer l'Analyse Complète'** pour démarrer l'analyse.")
             return
         
         # Récupération des données de la localité
@@ -237,57 +236,6 @@ class ModernDroughtPlatform:
                 self.show_ai_recommendations(locality_data, climate_data, drought_indicators)
             else:
                 st.warning("⚠️ Veuillez d'abord effectuer l'analyse en temps réel")
-    
-    def show_landing_page(self):
-        """Affiche la page d'accueil"""
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.markdown("""
-            <div class="landing-content">
-                <h2>🚨 Système d'Alerte Précoce aux Sécheresses</h2>
-                <p>Plateforme intégrée combinant données satellitaires, météorologiques 
-                et intelligence artificielle pour la surveillance et la prévention des risques de sécheresse.</p>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>🛰️ Surveillance Satellite</h3>
-                        <p>Données Sentinel, Landsat et MODIS en temps réel</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🤖 IA Prédictive</h3>
-                        <p>Recommandations DeepSeek pour les alertes</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🌡️ Analyse Multi-paramètres</h3>
-                        <p>SPI, NDVI, température, humidité, etc.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>🗺️ Cartographie Dynamique</h3>
-                        <p>Visualisation des zones à risque</p>
-                    </div>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
-        
-        with col2:
-            st.markdown("""
-            <div class="quick-stats">
-                <h3>📈 Statistiques Globales</h3>
-                <div class="stat-card">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">Régions surveillées</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">47</span>
-                    <span class="stat-label">Localités actives</span>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Alertes actives</span>
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
     
     def show_real_time_analysis(self, locality_data, analysis_period):
         """Affiche l'analyse en temps réel et retourne les données"""
@@ -671,9 +619,6 @@ class ModernDroughtPlatform:
         
         # Statistiques récapitulatives
         self.display_drought_statistics(climate_data, drought_indicators, drought_periods)
-        
-        # Statistiques récapitulatives
-        self.display_drought_statistics(climate_data, drought_indicators, drought_periods)
 
     def detect_drought_periods(self, climate_data, drought_indicators, dry_threshold=0.1):
         """
@@ -694,7 +639,7 @@ class ModernDroughtPlatform:
                 current_period = {
                     'start_date': date,
                     'start_index': i,
-                    'dry_days': 1,  # Utiliser 'dry_days' au lieu de 'duration'
+                    'dry_days': 1,
                     'total_precip': precip
                 }
             elif is_dry_day and current_period is not None:
@@ -717,20 +662,6 @@ class ModernDroughtPlatform:
                     drought_periods.append(current_period)
                 
                 current_period = None
-        
-        # Gérer la période en cours à la fin des données
-        if current_period is not None and current_period['dry_days'] >= 3:
-            current_period['end_date'] = dates[-1]
-            current_period['end_index'] = len(dates) - 1
-            current_period['avg_precip'] = current_period['total_precip'] / current_period['dry_days']
-            current_period['avg_deficit'] = dry_threshold - current_period['avg_precip']
-            current_period['intensity'] = self.assess_drought_intensity(
-                current_period['dry_days'], 
-                current_period['avg_deficit']
-            )
-            drought_periods.append(current_period)
-        
-        return drought_periods
         
         # Gérer la période en cours à la fin des données
         if current_period is not None and current_period['dry_days'] >= 3:
@@ -829,7 +760,7 @@ class ModernDroughtPlatform:
         fig = px.imshow(
             pivot_data,
             title="Indice de Sécheresse Mensuel (Plus la couleur est chaude, plus la sécheresse est sévère)",
-            color_continuous_scale="RdYlBu_r",  # Rouge pour la sécheresse, bleu pour l'humidité
+            color_continuous_scale="RdYlBu_r",
             aspect="auto"
         )
         
@@ -1342,7 +1273,7 @@ class ModernDroughtPlatform:
         # Génération des alertes
         alert_generator = get_alert_generator()
         
-        with st.spinner(f"🤖 DeepSeek analyse les {group_by}..."):
+        with st.spinner(f"🤖 OnaccMCL+R2 analyse les {group_by}..."):
             alerts = alert_generator.generate_alerts_by_group(
                 self.localities_df, 
                 analysis_period,
@@ -1475,6 +1406,108 @@ class ModernDroughtPlatform:
             
             st.markdown("---")
 
+    def display_group_alerts_map(self, alerts, group_type):
+        """
+        Affiche les alertes groupées sur une carte
+        """
+        st.markdown("### 🗺️ Carte des Alertes Groupées")
+        
+        # Création de la carte
+        m = folium.Map(
+            location=[self.localities_df['latitude'].mean(), self.localities_df['longitude'].mean()],
+            zoom_start=6,
+            tiles='CartoDB positron'
+        )
+        
+        # Ajout des marqueurs pour chaque groupe
+        for alert in alerts:
+            # Trouver les coordonnées approximatives du groupe
+            # En utilisant la première localité de l'échantillon comme référence
+            sample_locality = alert['localites_echantillon'][0] if alert['localites_echantillon'] else None
+            
+            if sample_locality:
+                # Trouver les coordonnées de cette localité dans le dataframe
+                locality_data = self.localities_df[
+                    self.localities_df['localite'] == sample_locality
+                ]
+                
+                if not locality_data.empty:
+                    latitude = locality_data.iloc[0]['latitude']
+                    longitude = locality_data.iloc[0]['longitude']
+                    
+                    risk_color = {
+                        'Très Élevé': 'red',
+                        'Élevé': 'darkred',
+                        'Modéré': 'orange',
+                        'Faible': 'green'
+                    }.get(alert['niveau_risque_groupe'], 'gray')
+                    
+                    # Parsing du message d'alerte
+                    parsed_alert = parse_group_alert_message(alert['alerte'])
+                    
+                    folium.Marker(
+                        [latitude, longitude],
+                        popup=f"""
+                        <b>{alert['groupe_nom']}</b><br>
+                        <b>Type:</b> {group_type}<br>
+                        <b>Risque Groupe:</b> {alert['niveau_risque_groupe']}<br>
+                        <b>Localités:</b> {alert['total_localites']}<br>
+                        <b>Score Moyen:</b> {alert['score_risque_moyen']:.1f}<br>
+                        <b>Ratio Risque:</b> {alert['ratio_risque_eleve']*100:.1f}%
+                        """,
+                        tooltip=f"{alert['groupe_nom']} - {alert['niveau_risque_groupe']}",
+                        icon=folium.Icon(color=risk_color, icon='exclamation-triangle', prefix='fa')
+                    ).add_to(m)
+        
+        # Affichage de la carte
+        st_folium(m, width=800, height=500)
+
+    def export_group_alerts(self, alerts, group_type):
+        """
+        Permet l'export des alertes groupées
+        """
+        st.markdown("### 💾 Export des Alertes Groupées")
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            if st.button("📄 Exporter en CSV", key="export_group_csv", use_container_width=True):
+                # Préparation des données pour l'export
+                export_data = []
+                for alert in alerts:
+                    parsed_alert = parse_group_alert_message(alert['alerte'])
+                    export_data.append({
+                        'groupe_nom': alert['groupe_nom'],
+                        'type_groupe': group_type,
+                        'niveau_risque': alert['niveau_risque_groupe'],
+                        'score_risque_moyen': alert['score_risque_moyen'],
+                        'total_localites': alert['total_localites'],
+                        'ratio_risque_eleve': alert['ratio_risque_eleve'],
+                        'localites_echantillon': ', '.join(alert['localites_echantillon']),
+                        'urgence': parsed_alert.get('urgence', 'N/A'),
+                        'zones_prioritaires': '; '.join(parsed_alert.get('zones_prioritaires', [])),
+                        'actions_coordonnees': '; '.join(parsed_alert.get('actions_coordonnees', []))
+                    })
+                
+                df = pd.DataFrame(export_data)
+                csv = df.to_csv(index=False, encoding='utf-8-sig')
+                st.download_button(
+                    label="📥 Télécharger CSV",
+                    data=csv,
+                    file_name=f"alertes_groupes_secheresse_{datetime.now().strftime('%Y%m%d_%H%M')}.csv",
+                    mime="text/csv"
+                )
+        
+        with col2:
+            if st.button("📋 Exporter en JSON", key="export_group_json", use_container_width=True):
+                json_data = json.dumps(alerts, indent=2, ensure_ascii=False, default=str)
+                st.download_button(
+                    label="📥 Télécharger JSON",
+                    data=json_data,
+                    file_name=f"alertes_groupes_secheresse_{datetime.now().strftime('%Y%m%d_%H%M')}.json",
+                    mime="application/json"
+                )
+
     def display_alerts_map(self, alerts):
         """
         Affiche les alertes sur une carte
@@ -1544,6 +1577,7 @@ class ModernDroughtPlatform:
                     file_name=f"alertes_secheresse_{datetime.now().strftime('%Y%m%d_%H%M')}.json",
                     mime="application/json"
                 )
+
 def main():
     # Initialisation de la plateforme
     platform = ModernDroughtPlatform()
