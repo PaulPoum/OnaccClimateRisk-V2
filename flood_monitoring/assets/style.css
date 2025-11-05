@@ -1,0 +1,108 @@
+.main-title {
+    text-align: center;
+    color: #1f77b4;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1f77b4, #2ecc71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Styles pour les niveaux d'alerte */
+.risk-max-alert {
+    background-color: #ff4b4b;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #cc0000;
+}
+
+.risk-alert {
+    background-color: #ffa500;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #cc8400;
+}
+
+.risk-pre-alert {
+    background-color: #ffd700;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #ccac00;
+}
+
+.risk-vigilance {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #2e7d32;
+}
+
+/* Cartes métriques */
+.metric-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    margin: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar améliorée */
+.sidebar .sidebar-content {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-right: 2px solid #dee2e6;
+}
+
+/* Boutons */
+.stButton button {
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.stButton button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress bars */
+.stProgress > div > div > div {
+    background: linear-gradient(90deg, #4CAF50, #FFC107, #FF9800, #F44336);
+}
+
+/* Dataframes */
+.dataframe {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}

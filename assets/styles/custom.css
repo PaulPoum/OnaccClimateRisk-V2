@@ -1,0 +1,744 @@
+/* assets/styles/custom.css */
+
+/* ===== VARIABLES CLAIRES ET MODERNES ===== */
+:root {
+    --primary-blue: #2563eb;
+    --primary-blue-dark: #1d4ed8;
+    --primary-blue-light: #3b82f6;
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    --accent-purple: #8b5cf6;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-light: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
+
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e1;
+
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 10px 40px rgba(0, 0, 0, 0.12);
+    --shadow-large: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+}
+
+/* ===== POLICES MODERNES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ===== ANIMATIONS DOUCES ===== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+/* ===== RÉINITIALISATION ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== FOND MODERNE CLAIR ===== */
+.stApp {
+    background:
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 25%),
+        linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+    background-attachment: fixed;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+}
+
+/* ===== LAYOUT PRINCIPAL MODERNE ===== */
+.light-container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    position: relative;
+    backdrop-filter: blur(20px);
+}
+
+/* ===== SIDEBAR HERO MODERNE ===== */
+.hero-sidebar-light {
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+    color: white;
+}
+
+.hero-sidebar-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.hero-sidebar-light::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-content-light {
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.hero-logo-light {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero-logo-icon-light {
+    font-size: 3rem;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.hero-logo-text-light {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.hero-title-light {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle-light {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    opacity: 0.95;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Inter', sans-serif;
+}
+
+.hero-features-light {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.hero-feature-light {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-feature-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.hero-feature-light:hover::before {
+    left: 100%;
+}
+
+.hero-feature-light:hover {
+    transform: translateX(12px) scale(1.02);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon-light {
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.hero-feature-light:hover .feature-icon-light {
+    transform: scale(1.1) rotate(5deg);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.feature-content-light {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.feature-title-light {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.feature-text-light {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+/* ===== CONTENU PRINCIPAL MODERNE ===== */
+.auth-main-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    background: transparent;
+    position: relative;
+}
+
+.auth-card-light {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem;
+    box-shadow: var(--shadow-large);
+    border: 1px solid var(--border-light);
+    width: 100%;
+    max-width: 520px;
+    animation: slideInRight 0.8s ease-out 0.3s both;
+    position: relative;
+    backdrop-filter: blur(20px);
+}
+
+.auth-card-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--bg-gradient);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.auth-card-light::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ===== EN-TÊTE AUTH MODERNE ===== */
+.auth-header-light {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.auth-logo-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logo-icon-light {
+    font-size: 3.5rem;
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.logo-text-light {
+    text-align: center;
+}
+
+.auth-title-light {
+    font-size: 2.8rem;
+    font-weight: 800;
+    background: var(--bg-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+}
+
+.auth-subtitle-light {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== FORMULAIRES MODERNES ===== */
+.form-container-light {
+    animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+.form-header-light {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-title-light {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.form-subtitle-light {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== OVERRIDES STREAMLIT POUR DESIGN MODERNE ===== */
+.stTextInput>div>div>input {
+    padding: 1.125rem 1.5rem !important;
+    border: 2px solid var(--border-light) !important;
+    border-radius: var(--radius-lg) !important;
+    font-size: 1rem !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.stTextInput>div>div>input:focus {
+    border-color: var(--primary-blue) !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+.stTextInput>div>div>input::placeholder {
+    color: var(--text-light) !important;
+    font-weight: 400 !important;
+}
+
+.stTextInput label {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.95rem !important;
+}
+
+.stSelectbox>div>div {
+    border: 2px solid var(--border-light) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1.125rem 1.5rem !important;
+    background: var(--bg-primary) !important;
+    font-family: 'Inter', sans-serif !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stSelectbox>div>div:hover {
+    border-color: var(--primary-blue-light) !important;
+    transform: translateY(-1px) !important;
+}
+
+.stButton>button {
+    width: 100% !important;
+    padding: 1.25rem 2rem !important;
+    border-radius: var(--radius-lg) !important;
+    font-weight: 700 !important;
+    border: none !important;
+    background: var(--bg-gradient) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-size: 1.05rem !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important;
+}
+
+.stButton>button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.stButton>button:hover::before {
+    left: 100%;
+}
+
+.stButton>button:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4) !important;
+}
+
+.stTabs [data-baseweb="tab-list"] {
+    gap: 0.5rem !important;
+    background: var(--bg-secondary) !important;
+    padding: 0.75rem !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-light) !important;
+    margin-bottom: 2.5rem !important;
+    backdrop-filter: blur(10px);
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 1rem 1.5rem !important;
+    flex: 1 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    font-weight: 600 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--shadow-soft) !important;
+    transform: translateY(-2px) !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+.stCheckbox>div {
+    background: var(--bg-primary) !important;
+    padding: 0.75rem !important;
+    border-radius: var(--radius-md) !important;
+    font-family: 'Inter', sans-serif !important;
+    border: 1px solid var(--border-light) !important;
+}
+
+.stCheckbox label {
+    color: var(--text-primary) !important;
+    font-weight: 500 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* ===== ÉLÉMENTS PERSONNALISÉS MODERNES ===== */
+.password-strength {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.strength-weak {
+    color: #ef4444;
+}
+
+.strength-medium {
+    color: #f59e0b;
+}
+
+.strength-strong {
+    color: #10b981;
+}
+
+.forgot-password-light {
+    text-align: right;
+    margin-top: 0.75rem;
+}
+
+.forgot-password-light a {
+    color: var(--primary-blue) !important;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+.forgot-password-light a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+.forgot-password-light a:hover::after {
+    width: 100%;
+}
+
+.resend-container-light {
+    display: flex;
+    align-items: end;
+    height: 100%;
+}
+
+/* ===== SECTIONS DE FORMULAIRES MODERNES ===== */
+.form-section {
+    margin-bottom: 2.5rem;
+}
+
+.form-section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-light);
+}
+
+/* ===== LIENS ET BOUTONS SECONDAIRES MODERNES ===== */
+.secondary-button {
+    background: transparent !important;
+    border: 2px solid var(--border-medium) !important;
+    color: var(--text-secondary) !important;
+    padding: 1.125rem 2rem !important;
+    border-radius: var(--radius-lg) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    width: 100% !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.secondary-button:hover {
+    border-color: var(--primary-blue) !important;
+    color: var(--primary-blue) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* ===== MESSAGES D'ALERTE MODERNES ===== */
+.stAlert {
+    border-radius: var(--radius-lg) !important;
+    font-family: 'Inter', sans-serif !important;
+    border: 1px solid !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.stAlert [data-baseweb="notification"] {
+    border-radius: var(--radius-lg) !important;
+}
+
+/* ===== RESPONSIVE DESIGN MODERNE ===== */
+@media (max-width: 1024px) {
+    .light-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-sidebar-light {
+        padding: 3rem 2rem;
+        min-height: 40vh;
+    }
+
+    .hero-title-light {
+        font-size: 2.8rem;
+    }
+
+    .auth-card-light {
+        padding: 3rem 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .auth-main-light {
+        padding: 2rem 1rem;
+    }
+
+    .auth-card-light {
+        padding: 2.5rem 2rem;
+        margin: 0.5rem;
+    }
+
+    .hero-title-light {
+        font-size: 2.3rem;
+    }
+
+    .hero-subtitle-light {
+        font-size: 1.15rem;
+    }
+
+    .auth-title-light {
+        font-size: 2.3rem;
+    }
+
+    .form-title-light {
+        font-size: 1.6rem;
+    }
+}
+
+/* ===== SCROLLBAR PERSONNALISÉE MODERNE ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-blue-dark), var(--accent-purple));
+}
+
+/* ===== EFFETS DE SURVOL AVANCÉS ===== */
+.stTextInput>div>div>input:hover {
+    border-color: var(--primary-blue-light) !important;
+    transform: translateY(-1px) !important;
+}
+
+.hero-feature-light:active {
+    transform: translateX(8px) scale(0.98) !important;
+}
+
+/* ===== LOADING STATES ===== */
+.stButton>button:disabled {
+    opacity: 0.7 !important;
+    transform: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ===== FOCUS STATES ACCESSIBLES ===== */
+.stTextInput>div>div>input:focus-visible {
+    outline: 2px solid var(--primary-blue) !important;
+    outline-offset: 2px !important;
+}
+
+.stButton>button:focus-visible {
+    outline: 2px solid var(--primary-blue) !important;
+    outline-offset: 2px !important;
+}
+
+/* Styles pour les sections flood */
+.flood-section {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.flood-metric {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,344 @@
+/* Style moderne pour la plateforme de sécheresse */
+
+/* Variables CSS */
+:root {
+    --primary: #1f77b4;
+    --secondary: #ff7f0e;
+    --success: #2ca02c;
+    --warning: #ffbb78;
+    --danger: #d62728;
+    --info: #17becf;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+}
+
+/* Styles généraux */
+.main-header {
+    text-align: center;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.main-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Sidebar */
+.sidebar-header {
+    background: linear-gradient(135deg, var(--primary), var(--info));
+    color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.sidebar-footer {
+    background-color: var(--light);
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+/* Cartes de métriques */
+.metric-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--primary);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+}
+
+.metric-card.risk-card {
+    border-left: 4px solid var(--danger);
+}
+
+.metric-title {
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.metric-desc {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Cartes d'alerte */
+.alert-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--danger);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alert-card.high {
+    border-left-color: var(--danger);
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+.alert-card.medium {
+    border-left-color: var(--warning);
+    background: linear-gradient(135deg, #ffd93d, #ffed4e);
+}
+
+.alert-card.low {
+    border-left-color: var(--success);
+    background: linear-gradient(135deg, #6bcf7f, #85e095);
+}
+
+/* Cartes d'action */
+.action-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--info);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-card h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--dark);
+}
+
+.action-card .priority {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    background: var(--info);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+/* Page d'accueil */
+.landing-content {
+    padding: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.quick-stats {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: var(--light);
+    border-radius: 10px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+/* Boutons */
+.stButton button {
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Onglets */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 2rem;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px;
+    white-space: pre-wrap;
+    background-color: var(--light);
+    border-radius: 10px 10px 0 0;
+    gap: 1rem;
+    padding: 0 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Styles pour les recommandations IA */
+.priority-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.priority {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.urgency {
+    background: #FF9800;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.alert-card.critical {
+    border-left: 6px solid #d32f2f;
+    background: linear-gradient(135deg, #ff5252, #ff867f);
+    color: white;
+}
+
+.alert-card.high {
+    border-left: 6px solid #ff9800;
+    background: linear-gradient(135deg, #ffb74d, #ffcc80);
+}
+
+.alert-card.medium {
+    border-left: 6px solid #ffeb3b;
+    background: linear-gradient(135deg, #fff176, #fff59d);
+}
+
+.alert-card.low {
+    border-left: 6px solid #4caf50;
+    background: linear-gradient(135deg, #a5d6a7, #c8e6c9);
+}
+
+/* Styles pour les alertes */
+.alert-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #ff6b6b;
+}
+
+.alert-card.critical {
+    border-left-color: #d32f2f;
+    background: linear-gradient(135deg, #ff5252, #ff867f);
+    color: white;
+}
+
+.alert-card.high {
+    border-left-color: #ff9800;
+    background: linear-gradient(135deg, #ffb74d, #ffcc80);
+}
+
+.alert-card.medium {
+    border-left-color: #ffeb3b;
+    background: linear-gradient(135deg, #fff176, #fff59d);
+}
+
+.alert-card.low {
+    border-left-color: #4caf50;
+    background: linear-gradient(135deg, #a5d6a7, #c8e6c9);
+}
+
+/* Styles pour les statistiques d'alertes */
+.alert-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.stat-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f77b4;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
